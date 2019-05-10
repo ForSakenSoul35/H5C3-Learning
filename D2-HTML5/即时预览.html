@@ -1,0 +1,33 @@
+<html>
+  <head></head>
+  <body>
+    <input type="file" class="file" id="file" onchange="geiFileContent() " />
+    <input type="submit" />
+    <img src="">
+    <script>
+      function geiFileContent(){
+        // 1.创建文件读取对象
+        var reader = new FileReader()
+        // 2.读取文件 获取DataURL
+        // 2.1 说明没有任何的返回值  但是读取完文件之后  会将读取的结果存储在文件读取对象的result中 读取文件是需要时间
+        // FileReader 提供了一个完整的事件模型 用来捕获读取文件的状态
+        // 2.2  文件存储在file表单元素的files属性 中 是一个数组
+        var file =document.querySelector("#file").files;
+        
+        // 2.3需要传递一个参数 binary large object : 文件 (图片 或者其他可以嵌入到文档的类型)
+        reader.readAsDataURL(file[0]);
+        // 获取数据
+        // onabort() 读取文件中断时触发
+        // onerror() 读取文件出错时触发
+        // onload()  读取文件成功时触发
+        // onloadEnd() 读取完成时触发 无论成功还是失败
+        // onloadStart() 开始读取文件时触发
+        // onprogress 读取过程中持续触发
+        reader.onload=function(){
+          document.querySelector('img').src= reader.result;
+        }
+      }
+      
+    </script>
+  </body>
+</html>
