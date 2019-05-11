@@ -21,7 +21,7 @@
       margin-right: 100px;
 
     }
-    .div1 p{
+    p{
       font-size: 14px;
       background-color: green;
     }
@@ -40,50 +40,71 @@
     <!-- 1.在h5中如果想拖拽元素，就必须为元素添加 dragable="true"这个属性 -->
     <!-- 图片和超链接 默认就可以拖拽 -->
     <p id="pe" draggable="true" >试着把我拖过去</p>
+    <p id="pe1" draggable="true" >试着把我也拖过去</p>
   </div>
   <div class="div2"></div>
   <script>
     window.onload=function(){
-      var p = document.querySelector("#pe");
-      p.ondragstart=function(){
-        console.log("dragstart")
+      var obj=null;//当前被拖拽的元素
+      // 存储为全局变量是不合理的
+      document.ondragstart=function(e){
+        // 通过事件捕获来获取当前被拖拽的元素
+        // console.log(e.target)
+        // obj=e.target;
+        // 通过dataTransfer来实现数据的存储与读取
+        // setData 有两个参数 setData(format,data)
+        // format 数据类型 
+        // 数据类型 text/html  text/url-list
+        // data  数据  一般来说是字符串  
+        // 优点  不需要创建全局变量 能存取多个值 键值对
+        
+        e.dataTransfer.setData("text/html",e.target.id);
+        e.target.style.opacity=0.5;
+        e.target.parentNode.style.borderWidth="5px";
       }
-      p.ondrag=function(){
-        // console.log(" on drag")
+      document.ondrag=function(e){
+        
       }
       // 鼠标 离开被拖拽元素的范围
-      p.ondragleave=function(){
-        console.log(" 被拖拽元素的dragleave")
+      document.ondragleave=function(e){
+        
       }
       // 鼠标放开拖拽元素
-      p.ondragend=function(){
-        console.log(" dragend")
+      document.ondragend=function(e){
+        e.target.style.opacity=1;
+        e.target.parentNode.style.borderWidth="1px";
       }
-      var div2 = document.querySelector(".div2");
-      div2.ondragenter=function(){
-        console.log("enter")
+      
+      document.ondragenter=function(e){
+        console.log(e.target)
       }
-      div2.ondragover=function(e){
+      document.ondragover=function(e){
       //   ondrop 默认是不被触发的 浏览器会默认阻止ondrop事件
       // 必须在ondragover里面 阻止浏览器默认事件
         e.preventDefault();
         
-        // console.log("over")
+        
       }
-      div2.ondrop=function(){
-       
+      document.ondrop=function(e){
+      //  通过e.transfer.setData存储的数据只能在 drop事件中获取
+      var id = e.dataTransfer.getData("text/html")
+      e.target.appendChild(document.getElementById(id))
         // 添加被拖拽的元素到 目标元素
-        div2.appendChild(p)
-        console.log("drop")
+        // e.target.appendChild(obj)
+        
       }
-      div2.ondragleave=function(){
-        console.log("目标元素的dragleave")
+      document.ondragleave=function(){
+        
       }
-      // 将拖拽过去的元素 再拖回来
-      var div1 = document.querySelector(".div1");
       
+
     }
   </script>
+  <!-- 
+    事件源参数 e
+    通过e.target获取被操作的元素
+
+   -->
   <!-- 
     2.拖拽事件
     离开与进入 都是以鼠标为参照物
