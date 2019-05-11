@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+  <script src='main.js'></script> -->
+  <style>
+    div,p{
+      margin: 0;
+      padding:0;
+    }
+    .div1{
+      height: 100px;
+      width: 100px;
+      border:1px solid red;
+      float: left;
+      margin-right: 100px;
+
+    }
+    .div1 p{
+      font-size: 14px;
+      background-color: green;
+    }
+    .div2{
+      height: 100px;
+      width: 200px;
+      border:1px solid blue;
+      float: left;
+      
+
+    }
+  </style>
+</head>
+<body>
+  <div class="div1">
+    <!-- 1.在h5中如果想拖拽元素，就必须为元素添加 dragable="true"这个属性 -->
+    <!-- 图片和超链接 默认就可以拖拽 -->
+    <p id="pe" draggable="true" >试着把我拖过去</p>
+  </div>
+  <div class="div2"></div>
+  <script>
+    window.onload=function(){
+      var p = document.querySelector("#pe");
+      p.ondragstart=function(){
+        console.log("dragstart")
+      }
+      p.ondrag=function(){
+        // console.log(" on drag")
+      }
+      // 鼠标 离开被拖拽元素的范围
+      p.ondragleave=function(){
+        console.log(" 被拖拽元素的dragleave")
+      }
+      // 鼠标放开拖拽元素
+      p.ondragend=function(){
+        console.log(" dragend")
+      }
+      var div2 = document.querySelector(".div2");
+      div2.ondragenter=function(){
+        console.log("enter")
+      }
+      div2.ondragover=function(e){
+      //   ondrop 默认是不被触发的 浏览器会默认阻止ondrop事件
+      // 必须在ondragover里面 阻止浏览器默认事件
+        e.preventDefault();
+        
+        // console.log("over")
+      }
+      div2.ondrop=function(){
+       
+        // 添加被拖拽的元素到 目标元素
+        div2.appendChild(p)
+        console.log("drop")
+      }
+      div2.ondragleave=function(){
+        console.log("目标元素的dragleave")
+      }
+      // 将拖拽过去的元素 再拖回来
+      var div1 = document.querySelector(".div1");
+      
+    }
+  </script>
+  <!-- 
+    2.拖拽事件
+    离开与进入 都是以鼠标为参照物
+    事件分类：
+    （1）运用于被拖拽元素的事件
+    ondrag 整个拖拽过程都会被调用 持续
+    ondragstart 拖拽开始时调用
+    ondragleave 鼠标 拖拽元素  离开元素原来所在位置 时调用（是鼠标离开 而不是整个拖拽元素离开）
+    ondragend 拖拽结束时调用
+    （2）运用于目标元素的事件
+    ondragenter 鼠标 拖拽着 元素 进入目标元素时调用(鼠标进入) 持续触发
+    ondragover 停留在目标元素时调用（鼠标停留在） 持续触发
+    ondrop 当在目标元素上松开鼠标时调用
+      ondrop 默认是不被触发的 浏览器会默认阻止ondrop事件
+      必须在ondragover里面 阻止浏览器默认事件
+
+    ondragleave 鼠标（拖拽着元素）离开目标元素时调用
+   -->
+
+</body>
+</html>
