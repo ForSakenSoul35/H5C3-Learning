@@ -1,0 +1,31 @@
+<html>
+  <head></head>
+  <body>
+      <input type="text" id="username" ><br>
+      <input type="button" value="设置数据" id="setdata">
+      <input type="button" value="获取数据" id="getdata">
+      <input type="button" value="删除数据" id="delete">
+      <script>
+        // 存储数据
+        document.querySelector("#setdata").onclick=function(){
+          console.log("hello")
+          var name=document.querySelector("#username").value;
+          window.sessionStorage.setItem("username",name);
+        }
+      </script>
+  </body>
+  
+</html>
+<!-- 
+  sessionStorage
+  存储数据到本地，容量为5MB
+  1. 数据本质上是存储在页面的内存中
+  2. 它的生命周期：关闭当前页面（关闭页面  数据会自动清除）
+  方法：
+    setItem(key,value):存储数据 以键值对的方式存储
+    getItem(key)： 通过指定的key来获取数据
+    removeItem(key) 删除指定key的数据
+    clear() 清空所有存储的事件
+
+
+ -->
