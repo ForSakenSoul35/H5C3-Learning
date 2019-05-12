@@ -1,0 +1,23 @@
+CACHE MANIFEST 
+# 标记是 缓存文件 第一句必须是CACHE MANIFEST 
+
+# 写注释的方式
+
+# 需要缓存的文件清单列表
+CACHE:
+# 需要缓存的清单列表
+./image/AddressArrow.png
+./image/cover.jpg"
+#  可以写 *  表示缓存所有文件
+
+
+# 配置每一次都需要重新从服务器获取的文件清单列表
+NETWORK:
+./image/hide.png"
+./image/showCourse.png
+
+# 配置如果文件无法获取则使用指定的文件进行替代
+FALLBACK:
+./image/showCourse.png  ./image/tel.png
+# 可以写 / 表示任何文件找不到 都可以用另外一张图片来代替
+

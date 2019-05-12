@@ -6,12 +6,21 @@
       <input type="button" value="获取数据" id="getdata">
       <input type="button" value="删除数据" id="delete">
       <script>
+        // sessionStorage的使用
         // 存储数据
-        document.querySelector("#setdata").onclick=function(){
-          console.log("hello")
-          var name=document.querySelector("#username").value;
-          window.sessionStorage.setItem("username",name);
-        }
+        // document.querySelector("#setdata").onclick=function(){
+        //   console.log("hello")
+        //   var name=document.querySelector("#username").value;
+        //   window.sessionStorage.setItem("username",name);
+        // }
+        // // 获取数据
+        // document.querySelector("#getdata").onclick=function(){
+        //   // 找不到对应的值 就会返回 null
+        //   var name=window.sessionStorage.getItem("username")
+        //   alert(name);
+        // }
+        //localStorage的使用
+        
       </script>
   </body>
   
@@ -25,7 +34,19 @@
     setItem(key,value):存储数据 以键值对的方式存储
     getItem(key)： 通过指定的key来获取数据
     removeItem(key) 删除指定key的数据
+      删除时 如果key错误 不会报错 但是也不会删除数据
     clear() 清空所有存储的事件
 
-
  -->
+ <!-- 
+   localStorage
+   区别：
+    存储的量更多 20MB
+    不同浏览器不能共享数据 同一个浏览器的不同窗口可以共享数据
+    时效： 数据是存储在硬盘里面的 并不会随着页面或者浏览器的关闭而清除
+    如果要清除 必须手动清除
+   setItem(key,value):存储数据 以键值对的方式存储
+    getItem(key)： 通过指定的key来获取数据
+    removeItem(key) 删除指定key的数据
+    clear() 清空所有存储的事件
+  -->
