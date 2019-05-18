@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title></title>
+    <style>
+      *{
+        padding:0;
+        margin:0;
+      }
+      body{
+        background-color: #ccc;
+      }
+      .content{
+        height: 500px;
+        width: 500px;
+        border:1px solid red;
+        margin:50px auto;
+        
+      }
+      .head{
+        width: 250px;
+        height: 125px;
+        background-color:darkgreen;
+        margin:10px auto;
+        position: relative;
+        /* 添加圆角 */
+        border-radius:125px 125px 0 0;
+      }
+      .head::before{
+        content:'';
+        
+        width:20px;
+        height:20px;
+        border-radius: 10px;
+        background-color: #fff;
+        position:absolute;
+        left:70px;
+        bottom:40px;
+        
+      }
+      .head::after{
+        content:'';
+        
+        width:20px;
+        height:20px;
+        border-radius: 10px;
+        background-color: #fff;
+        position:absolute;
+        right:70px;
+        bottom:40px;
+        
+      }
+
+      /* 使用伪元素 */
+      /* 
+        1 设置content属性 否则不可见
+        2.如果要设置宽度 要转化为块级元素 默认是行级元素  方式：1.display/float/position
+       */
+       .body{
+         width:250px;
+         height:250px;
+         background-color: darkgreen;
+         border-radius:0 0 20px 20px;
+         margin:0 auto ;
+         position:relative;
+       }
+       .body::before,.body::after{
+        content:'';
+        position: absolute;
+        background-color: darkgreen;
+        width: 30px;
+        height:180px;
+        border-radius:10px;
+        
+        top:20px;
+
+       }
+       .body::before{
+         left:-40px;
+       }
+       .body::after{
+         right:-40px;
+       }
+       .footer{
+         width:250px;
+         height: 100px;
+         position: relative;
+         margin:0 auto;
+         /* background-color: #fff; */
+       }
+       .footer::before,.footer::after{
+         content:'';
+         position: absolute;
+         top:0;
+         background-color: darkgreen;
+         width:30px;
+         height: 90px;
+         border-radius:0 0 10px 10px; 
+
+       }
+       .footer::before{
+         left:50px;
+       }
+       .footer::after{
+         right:50px;
+       }
+       
+
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="head"></div>
+      <div class="body"></div>
+      <div class="footer"></div>
+
+    </div>
+  </body>
+
+</html>
