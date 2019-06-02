@@ -56,3 +56,5 @@
   (6)align-self  允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性
   - 默认为auto 表示继承align-items 如果没有父元素  相当于stretch
   - 属性值 除了auto 其他与align-items一致
+
+  flex 布局
